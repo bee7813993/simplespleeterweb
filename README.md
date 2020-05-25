@@ -20,12 +20,12 @@
 
 3. 本プロジェクトの全ファイルをWebサーバーの特定のディレクトリーに置く。
 
-4. 「spleeter_2work.bat」をdeezer spleeter のインストールフォルダーに置き、内容を修正する。
+4. 「spleeter_2work.bat」をdeezer spleeter のインストールフォルダーに置き、内容を修正する。  
    修正内容  
    ・spleeter のインストール先  
    ・anaconda のインストール先
 
-5. 「spleeter_result.php」の内容を修正する。
+5. 「spleeter_result.php」の内容を修正する。  
    修正内容  
    ・spleeter をインストールしたフォルダ
 
