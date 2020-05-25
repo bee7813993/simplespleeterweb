@@ -39,6 +39,11 @@ function tempDir($prefix = "spleeterwork"){
   <body>
 <?php
 
+$OUTPUTTYPE="wav";
+if(isset($_REQUEST['outputtype']) ){
+    $OUTPUTTYPE=$_REQUEST['outputtype'];
+}
+
 $DEBUGMSG .= print_r($_REQUEST, TRUE);
 $DEBUGMSG .= print_r($_FILES, TRUE);
 
@@ -51,9 +56,11 @@ if (move_uploaded_file($_FILES['SoundInputFile']['tmp_name'], $uploadfile)) {
     $DEBUGMSG .= "Possible file upload attack!\n";
 }
 
+
 // コマンド実行
-$cmd = $spleeter_bat. " \"" . $uploadfile . "\"  \"" . $tempDirName."\"";
+$cmd = $spleeter_bat. " \"" . $uploadfile . "\"  \"" . $tempDirName."\" ".$OUTPUTTYPE;
 $DEBUGMSG .= $cmd;
+
 $CMDRESULTEXT = "";
 exec  ($cmd,$CMDRESULTEXT,$RETVAL);
 
@@ -80,10 +87,8 @@ print "</pre>";
 
 ?>
 
-    <h1>deezer spleeter Web UI Result</h1>
-    
-
     <div class="container">
+    <h1>deezer spleeter Web UI Result</h1>
     <h2>変換結果フォルダ</h2>
     <a href="
 <?php
