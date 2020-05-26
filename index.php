@@ -47,21 +47,102 @@
           <div class="form-group">
           <label for="outputtype">出力形式</label>
           <div class="btn-group btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-secondary active">
-              <input type="radio" name="outputtype" value="wav" id="outputtype1"  checked>wav
+            <label class="btn btn-secondary 
+                 <?php echo (!isset($_COOKIE['outputtype']) ||(isset( $_COOKIE['outputtype']) && $_COOKIE['outputtype']==="wav")) ?  "active" :  "";
+                 ?>
+            ">
+              <input type="radio" name="outputtype" value="wav" id="outputtype1"  
+                 <?php echo (!isset($_COOKIE['outputtype']) ||(isset($_COOKIE['outputtype']) && $_COOKIE['outputtype']==="wav") )?  "checked" :  "";
+                 ?>
+              >wav
             </label>
-            <label class="btn btn-secondary ">
-              <input type="radio" name="outputtype" value="m4a" id="outputtype2"  >m4a
+            <label class="btn btn-secondary 
+                 <?php echo (isset($_COOKIE['outputtype']) && $_COOKIE['outputtype']==="m4a") ?  "active" :  "";
+                 ?>
+            ">
+              <input type="radio" name="outputtype" value="m4a" id="outputtype2"  
+                 <?php echo (isset($_COOKIE['outputtype']) && $_COOKIE['outputtype']==="m4a") ?  "checked" :  "";
+                 ?>
+              >m4a
             </label>
-            <label class="btn btn-secondary ">
-              <input type="radio" name="outputtype" value="mp3" id="outputtype3"  >mp3
+            <label class="btn btn-secondary 
+                 <?php echo (isset($_COOKIE['outputtype']) && $_COOKIE['outputtype']==="mp3") ?  "active" :  "";
+                 ?>
+            ">
+              <input type="radio" name="outputtype" value="mp3" id="outputtype3"  
+                 <?php echo (isset($_COOKIE['outputtype']) && $_COOKIE['outputtype']==="mp3") ?  "checked" :  "";
+                 ?>
+              >mp3
             </label>
-            <label class="btn btn-secondary ">
-              <input type="radio" name="outputtype" value="ogg" id="outputtype4"  >ogg
+            <label class="btn btn-secondary 
+                 <?php echo (isset($_COOKIE['outputtype']) && $_COOKIE['outputtype']==="ogg") ?  "active" :  "";
+                 ?>
+            ">
+              <input type="radio" name="outputtype" value="ogg" id="outputtype4"  
+                 <?php echo (isset($_COOKIE['outputtype']) && $_COOKIE['outputtype']==="ogg") ?  "checked" :  "";
+                 ?>
+              >ogg
             </label>
-            <label class="btn btn-secondary ">
-              <input type="radio" name="outputtype" value="flac" id="outputtype5" >flac
+            <label class="btn btn-secondary 
+                 <?php echo (isset($_COOKIE['outputtype']) && $_COOKIE['outputtype']==="flac") ?  "active" :  "";
+                 ?>
+            ">
+              <input type="radio" name="outputtype" value="flac" id="outputtype5" 
+                 <?php echo (isset($_COOKIE['outputtype']) && $_COOKIE['outputtype']==="flac") ?  "checked" :  "";
+                 ?>
+              >flac
             </label>
+          </div>
+          </div>
+          <div class="form-group">
+          <label for="outputtype">ビットレート</label>
+          <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-secondary 
+                 <?php echo (isset($_COOKIE['bitrate']) && $_COOKIE['bitrate']==="96k") ?  "active" :  "";
+                 ?>
+              ">
+              <input type="radio" name="bitrate" value="96k" id="bitrate1" 
+                 <?php echo (isset($_COOKIE['bitrate']) && $_COOKIE['bitrate']==="96k") ?  "checked" :  "";
+                 ?>
+               >96k
+            </label>
+            <label class="btn btn-secondary 
+                 <?php echo (isset($_COOKIE['bitrate']) && $_COOKIE['bitrate']==="128k") ?  "active" :  "";
+                 ?>
+            ">
+              <input type="radio" name="bitrate" value="128k" id="bitrate2"  
+                 <?php echo (isset($_COOKIE['bitrate']) && $_COOKIE['bitrate']==="128k") ?  "checked" :  "";
+                 ?>
+              >128k
+            </label>
+            <label class="btn btn-secondary 
+                 <?php echo (!isset($_COOKIE['bitrate']) || (isset($_COOKIE['bitrate']) && $_COOKIE['bitrate']==="192k")) ?  "active" :  "";
+                 ?>
+            ">
+              <input type="radio" name="bitrate" value="192k" id="bitrate3" 
+                 <?php echo (!isset($_COOKIE['bitrate']) || (isset($_COOKIE['bitrate']) && $_COOKIE['bitrate']==="192k")) ?  "checked" :  "";
+                 ?>
+              >192k
+            </label>
+            <label class="btn btn-secondary 
+                 <?php echo (isset($_COOKIE['bitrate']) && $_COOKIE['bitrate']==="240k") ?  "active" :  "";
+                 ?>
+            ">
+              <input type="radio" name="bitrate" value="240k" id="bitrate4"  
+                 <?php echo (isset($_COOKIE['bitrate']) && $_COOKIE['bitrate']==="240k") ?  "checked" :  "";
+                 ?>
+              >240k
+            </label>
+            <label class="btn btn-secondary 
+                 <?php echo (isset($_COOKIE['bitrate']) && $_COOKIE['bitrate']==="320k") ?  "active" :  "";
+                 ?>
+            ">
+              <input type="radio" name="bitrate" value="320k" id="bitrate5" 
+                 <?php echo (isset($_COOKIE['bitrate']) && $_COOKIE['bitrate']==="320k") ?  "checked" :  "";
+                 ?>
+              >320k
+            </label>
+            <p class="help-block">ビットレートに対応した形式のみ有効</p>
           </div>
           </div>
           <div class="form-group">
@@ -69,6 +150,5 @@
           </div>
       </form>
     </div>
-    
   </body>
 </html>

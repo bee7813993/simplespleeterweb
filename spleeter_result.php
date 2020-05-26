@@ -1,6 +1,5 @@
 <?php
 // spleeter をインストールしたフォルダに「spleeter_2work.bat」ファイルを置きそのパスを指定する。
-
 $spleeter_bat="F:\\Git\\spleeter\\spleeter_2work.bat";
 
 $DEBUGMSG ="";
@@ -42,6 +41,13 @@ function tempDir($prefix = "spleeterwork"){
 $OUTPUTTYPE="wav";
 if(isset($_REQUEST['outputtype']) ){
     $OUTPUTTYPE=$_REQUEST['outputtype'];
+    setcookie('outputtype',$OUTPUTTYPE,time()+60*60*24*180);
+}
+
+$BITRATE="192k";
+if(isset($_REQUEST['bitrate']) ){
+    $BITRATE=$_REQUEST['bitrate'];
+    setcookie('bitrate',$BITRATE,time()+60*60*24*180);
 }
 
 $DEBUGMSG .= print_r($_REQUEST, TRUE);
@@ -58,7 +64,7 @@ if (move_uploaded_file($_FILES['SoundInputFile']['tmp_name'], $uploadfile)) {
 
 
 // コマンド実行
-$cmd = $spleeter_bat. " \"" . $uploadfile . "\"  \"" . $tempDirName."\" ".$OUTPUTTYPE;
+$cmd = $spleeter_bat. " \"" . $uploadfile . "\"  \"" . $tempDirName."\" ".$OUTPUTTYPE." ".$BITRATE;
 $DEBUGMSG .= $cmd;
 
 $CMDRESULTEXT = "";
