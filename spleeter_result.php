@@ -50,21 +50,46 @@ if(isset($_REQUEST['bitrate']) ){
     setcookie('bitrate',$BITRATE,time()+60*60*24*180);
 }
 
+$STEMS="2stems";
+if(isset($_REQUEST['stems']) ){
+    $STEMS=$_REQUEST['stems'];
+    setcookie('stems',$STEMS,time()+60*60*24*180);
+    $STEMS='spleeter:'.$STEMS;
+}
+
 $DEBUGMSG .= print_r($_REQUEST, TRUE);
 $DEBUGMSG .= print_r($_FILES, TRUE);
 
 $tempDirName = tempDir("spleeterwork");
 $DEBUGMSG .= $tempDirName . "\n";
+if($_FILES['SoundInputFile']['error'] != 0){
+   if($_FILES['SoundInputFile']['error'] == 4 ) {
+   print "<p> 音源ファイルが指定されていません </p>\n";
+   }else {
+   print "<p> ファイルのアップロードに失敗しました Code : ".$_FILES['SoundInputFile']['error']." </p>\n";
+   }
+   print '<button type="button" class="btn btn-primary" onclick="history.back()">戻る</button>';
+   print '</body>    </html>';
+   die();
+}
+
 $uploadfile = $tempDirName . '\\' . $_FILES['SoundInputFile']['name'];
 if (move_uploaded_file($_FILES['SoundInputFile']['tmp_name'], $uploadfile)) {
     $DEBUGMSG .= "File is valid, and was successfully uploaded. PATH:$uploadfile\n";
 } else {
     $DEBUGMSG .= "Possible file upload attack!\n";
+   print "<p> ファイルのアップロードに失敗しました </p>\n";
+   print "<pre>\n";
+   print $DEBUGMSG;
+   print "</pre>\n";
+   print '<button type="button" class="btn btn-primary" onclick="history.back()">戻る</button>';
+   print '</body>    </html>';
+   die();
 }
 
 
 // コマンド実行
-$cmd = $spleeter_bat. " \"" . $uploadfile . "\"  \"" . $tempDirName."\" ".$OUTPUTTYPE." ".$BITRATE;
+$cmd = $spleeter_bat. " \"" . $uploadfile . "\"  \"" . $tempDirName."\" ".$OUTPUTTYPE." ".$BITRATE." ".$STEMS;
 $DEBUGMSG .= $cmd;
 
 $CMDRESULTEXT = "";
@@ -72,12 +97,18 @@ exec  ($cmd,$CMDRESULTEXT,$RETVAL);
 
 if($RETVAL == 1){
 
+
+   print "<p> ファイルの処理に失敗しました </p>\n";
+   print '<button type="button" class="btn btn-primary" onclick="history.back()">戻る</button>';
+   print '</body>    </html>';
+
   echo "Failed, LOG";
-var_dump ($RETVAL);
 print "<pre>";
+var_dump ($RETVAL);
 print $DEBUGMSG;
 var_dump ($CMDRESULTEXT);
 print "</pre>";
+   die();
 
 }
 

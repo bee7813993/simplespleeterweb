@@ -37,16 +37,18 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     <!--  OLD <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>  -->
       <form enctype="multipart/form-data" action="spleeter_result.php"  method="POST" onsubmit="saveFilename();" >
-          <div class="form-group">
+          <div class="form-group row">
             <input type="hidden" name="MAX_FILE_SIZE" value="900000000" />
             <input type="hidden" name="uploaddfilename" id="upldfilename" />
-            <label for="SoundInputFile">音源ファイル</label>
-            <input type="file" id="SoundInputFile" class="form-control-file" name="SoundInputFile" />
-            <p class="help-block">対応形式：wav,mp3,ogg,m4a,wma,flac</p>
+            <label for="SoundInputFile" class="col-sm-2 col-form-label">音源ファイル</label>
+            <div class="col-sm-10">
+            <input type="file" id="SoundInputFile" class="form-control-file " name="SoundInputFile" />
+            <p class="form-text text-muted">対応形式：wav,mp3,ogg,m4a,wma,flac</p>
+            </div>
           </div>
-          <div class="form-group">
-          <label for="outputtype">出力形式</label>
-          <div class="btn-group btn-group-toggle" data-toggle="buttons">
+          <div class="form-group row">
+          <label for="outputtype" class="col-sm-2 col-form-label" >出力形式</label>
+          <div class="btn-group btn-group-toggle col-sm-10" data-toggle="buttons ">
             <label class="btn btn-secondary 
                  <?php echo (!isset($_COOKIE['outputtype']) ||(isset( $_COOKIE['outputtype']) && $_COOKIE['outputtype']==="wav")) ?  "active" :  "";
                  ?>
@@ -94,9 +96,10 @@
             </label>
           </div>
           </div>
-          <div class="form-group">
-          <label for="outputtype">ビットレート</label>
-          <div class="btn-group btn-group-toggle" data-toggle="buttons">
+          <div class="form-group row">
+          <label for="outputtype" class="col-sm-2 col-form-label" >ビットレート</label>
+            
+          <div class="btn-group btn-group-toggle  col-sm-10" data-toggle="buttons">
             <label class="btn btn-secondary 
                  <?php echo (isset($_COOKIE['bitrate']) && $_COOKIE['bitrate']==="96k") ?  "active" :  "";
                  ?>
@@ -142,9 +145,48 @@
                  ?>
               >320k
             </label>
-            <p class="help-block">ビットレートに対応した形式のみ有効</p>
+
+          </div>
+                        <small class="form-text text-muted text-right">ビットレートに対応した形式のみ有効</small>
+          </div>
+
+          <div class="form-group row">
+          <label for="outputtype" class="col-sm-2 col-form-label" >分割数（STEM）</label>
+            
+          <div class="btn-group btn-group-toggle  col-sm-10" data-toggle="buttons">
+            <label class="btn btn-secondary 
+                 <?php echo (!isset($_COOKIE['stems']) || (isset($_COOKIE['stems']) && $_COOKIE['stems']==="2stems" )) ?  "active" :  "";
+                 ?>
+              ">
+              <input type="radio" name="stems" value="2stems" id="stems" 
+                 <?php echo (!isset($_COOKIE['stems']) || (isset($_COOKIE['stems']) && $_COOKIE['stems']==="2stems" )) ?  "checked" :  "";
+                 ?>
+               >2stems <small>(オフボーカル＋ボーカル抽出)</small>
+            </label>
+            <label class="btn btn-secondary 
+                 <?php echo (isset($_COOKIE['stems']) && $_COOKIE['stems']==="4stems") ?  "active" :  "";
+                 ?>
+            ">
+              <input type="radio" name="stems" value="4stems" id="stems"  
+                 <?php echo (isset($_COOKIE['stems']) && $_COOKIE['stems']==="4stems") ?  "checked" :  "";
+                 ?>
+              >4stems <small>(＋ベース＋ドラム抽出)</small>
+            </label>
+            <label class="btn btn-secondary 
+                 <?php echo ( (isset($_COOKIE['stems']) && $_COOKIE['stems']==="5stems")) ?  "active" :  "";
+                 ?>
+            ">
+              <input type="radio" name="stems" value="5stems" id="stems" 
+                 <?php echo ( (isset($_COOKIE['stems']) && $_COOKIE['stems']==="5stems")) ?  "checked" :  "";
+                 ?>
+              >5stems <small>(＋ピアノ抽出)</small>
+            </label>
           </div>
           </div>
+
+
+
+
           <div class="form-group">
           <button type="submit" class="btn btn-primary">Submit</button>
           </div>
