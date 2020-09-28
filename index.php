@@ -48,7 +48,7 @@
           </div>
           <div class="form-group row">
           <label for="outputtype" class="col-sm-2 col-form-label" >出力形式</label>
-          <div class="btn-group btn-group-toggle col-sm-10" data-toggle="buttons ">
+          <div class="btn-group btn-group-toggle col-sm-10" data-toggle="buttons">
             <label class="btn btn-secondary 
                  <?php echo (!isset($_COOKIE['outputtype']) ||(isset( $_COOKIE['outputtype']) && $_COOKIE['outputtype']==="wav")) ?  "active" :  "";
                  ?>
@@ -97,7 +97,7 @@
           </div>
           </div>
           <div class="form-group row">
-          <label for="outputtype" class="col-sm-2 col-form-label" >ビットレート</label>
+          <label for="bitrate" class="col-sm-2 col-form-label" >ビットレート</label>
             
           <div class="btn-group btn-group-toggle  col-sm-10" data-toggle="buttons">
             <label class="btn btn-secondary 
@@ -151,14 +151,14 @@
           </div>
 
           <div class="form-group row">
-          <label for="outputtype" class="col-sm-2 col-form-label" >分割数（STEM）</label>
+          <label for="stems" class="col-sm-2 col-form-label" >分割数（STEM）</label>
             
           <div class="btn-group btn-group-toggle  col-sm-10" data-toggle="buttons">
             <label class="btn btn-secondary 
                  <?php echo (!isset($_COOKIE['stems']) || (isset($_COOKIE['stems']) && $_COOKIE['stems']==="2stems" )) ?  "active" :  "";
                  ?>
               ">
-              <input type="radio" name="stems" value="2stems" id="stems" 
+              <input type="radio" name="stems" value="2stems" id="stems1" 
                  <?php echo (!isset($_COOKIE['stems']) || (isset($_COOKIE['stems']) && $_COOKIE['stems']==="2stems" )) ?  "checked" :  "";
                  ?>
                >2stems <small>(オフボーカル＋ボーカル抽出)</small>
@@ -167,7 +167,7 @@
                  <?php echo (isset($_COOKIE['stems']) && $_COOKIE['stems']==="4stems") ?  "active" :  "";
                  ?>
             ">
-              <input type="radio" name="stems" value="4stems" id="stems"  
+              <input type="radio" name="stems" value="4stems" id="stems2"  
                  <?php echo (isset($_COOKIE['stems']) && $_COOKIE['stems']==="4stems") ?  "checked" :  "";
                  ?>
               >4stems <small>(＋ベース＋ドラム抽出)</small>
@@ -176,7 +176,7 @@
                  <?php echo ( (isset($_COOKIE['stems']) && $_COOKIE['stems']==="5stems")) ?  "active" :  "";
                  ?>
             ">
-              <input type="radio" name="stems" value="5stems" id="stems" 
+              <input type="radio" name="stems" value="5stems" id="stems3" 
                  <?php echo ( (isset($_COOKIE['stems']) && $_COOKIE['stems']==="5stems")) ?  "checked" :  "";
                  ?>
               >5stems <small>(＋ピアノ抽出)</small>

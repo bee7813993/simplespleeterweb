@@ -1,5 +1,5 @@
 rem spleeter のインストール先を指定
-cd F:\Git\spleeter
+rem cd /D F:\Git\spleeter
 
 set OUTTYPE=wav
 @if "%3" neq "" (
@@ -11,12 +11,20 @@ set BITRATE=320k
  set BITRATE=%4
 )
 
+set STEMS="spleeter:2stems" 
+@if "%5" neq "" (
+ set STEMS=%5
+)
+
+rem ログファイル名
+set logfile=%~p1\\result.txt
 
 rem anaconda のインストール先のactivate.batを指定
 call F:\Users\miniconda3\Scripts\activate.bat
  
-spleeter separate --codec %OUTTYPE% --birate %BITRATE% -i %1 -o %2
-rem spleeter separate --codec %OUTTYPE% -i %1 -o %2
+spleeter separate --codec %OUTTYPE% --birate %BITRATE% -i %1 -o %2 -p %STEMS% > %logfile% 2>&1
+
 set RET=%errorlevel%
+type %logfile%
 timeout 5
 exit /b %RET%
