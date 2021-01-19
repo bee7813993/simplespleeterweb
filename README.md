@@ -1,7 +1,9 @@
 # simplespleeterweb
 自宅のPCで動作させている deezer spleeter をWeb上で動かすしくみ
 
-## 準備
+Linuxにも対応 → [セットアップのメモ](linux/setup_memo.md)
+
+## 準備 (WindowsPC)
 
 1.  PCにdeezer spleeter をセットアップする
 
